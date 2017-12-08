@@ -21,7 +21,7 @@ SCRIPT_NAME=${0##*/}
 SCRIPT_VERSION=1.1 
 
 instanceid=`wget -q -O - http://169.254.169.254/latest/meta-data/instance-id`
-asgname=`aws autoscaling describe-auto-scaling-instances --instance-ids="${INSTANCE_ID}" --query 'AutoScalingInstances[0].AutoScalingGroupName' --output text`
+asgname=`aws autoscaling describe-auto-scaling-instances --instance-ids="${instanceid}" --query 'AutoScalingInstances[0].AutoScalingGroupName' --output text`
 azone=`wget -q -O - http://169.254.169.254/latest/meta-data/placement/availability-zone`
 region=${azone/%?/}
 export EC2_REGION=$region
